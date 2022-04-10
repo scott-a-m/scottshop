@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400&family=Ramaraja&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-container {
+    @apply flex justify-center items-center h-screen shadow-md bg-hero-pattern;
+}
+
+.form-box {
+    @apply bg-green-200 text-center p-4 rounded-md w-96 m-4;
+}
+
+.full-page {
+    @apply flex justify-center items-center h-screen bg-hero-pattern;
+}
+
+.btn {
+    @apply bg-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-green-400 hover:text-white
+}
+
+.btn-disabled {
+    @apply bg-green-600 text-white cursor-default rounded-md p-2 m-2 transition-all duration-500 opacity-50
+}
+
+.btn-standard {
+    @apply bg-green-600 text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-green-500
+}
+
+.btn-cancel {
+    @apply bg-red-500 text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-red-700
+}
+.btn-cancel-disabled {
+    @apply bg-red-500 text-white rounded-md p-2 m-2 transition-all duration-500 cursor-default opacity-50
+}
+
+.btn-shop {
+    @apply bg-green-700 text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-green-600
+}
+
+.text-link {
+    @apply transition-all duration-500 underline hover:text-green-600
+}
+
+.error-msg {
+    @apply bg-white text-red-500 p-2 m-2 rounded-md text-center
+}
+
+.success-msg {
+    @apply bg-white text-green-500 p-2 m-2 rounded-md text-center
+}
+
+.link {
+    @apply underline transition-all duration-500 hover:text-green-500
+}
