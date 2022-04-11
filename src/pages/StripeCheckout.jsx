@@ -116,7 +116,7 @@ const CheckoutForm = () => {
   return (
     <div className="form-container">
       <div className="form-box">
-        <h1 className="font-heading text-3xl py-3">Scott Shop</h1>
+        <h1 className="font-heading text-3xl py-1 md:py-3">Scott Shop</h1>
         {succeeded ? (
           <article>
             <h4>
@@ -133,18 +133,31 @@ const CheckoutForm = () => {
               <span className="capitalize font-bold">{user && user.name}</span>.
               Your total is {total && formatPrice(total)}
             </p>
-            <p className="py-2 pb-6 text-sm">
+            <p className="py-1 md:py-2 pb-3 md:pb-6 text-sm">
               Scott Shop was built as a personal coding project.
               <span className="font-bold">Do not use a real card number</span>.
               Use the test card number below. Choose any future expiry date, CVC
-              and ZIP no.
+              and ZIP no. Payments are processed by{" "}
+              <a
+                href="https://stripe.com/"
+                target="_blank"
+                className="link"
+                rel="noreferrer"
+              >
+                Stripe
+              </a>
+              .
             </p>
-            <p className="py-2 bg-green-100 italic">
+            <p className="py-1 bg-green-100 italic">
               Test Card Number: 4242 4242 4242 4242
             </p>
           </article>
         )}
-        <form id="payment-form" onSubmit={handleSubmit} className="mt-8">
+        <form
+          id="payment-form"
+          onSubmit={handleSubmit}
+          className="mt-4 md:mt-8"
+        >
           <CardElement
             id="card-element"
             onChange={handleChange}

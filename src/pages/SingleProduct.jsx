@@ -69,13 +69,15 @@ const SingleProduct = () => {
 
   return (
     <div className="mt-20 md:mt-32 text-center">
-      <div className="grid sm:grid-cols-[auto_1fr] lg:grid-cols-2 mx-5 mt-20 md:mx-20 md:gap-20 text-center items-center">
+      <div className="grid sm:grid-cols-[auto_1fr] lg:grid-cols-2 mx-5 mt-20 md:mx-20 md:gap-5 lg:gap-20 text-center items-center">
         <div className="flex flex-col justify-center items-center">
           <div className="sm:hidden">
             <h4 className="font-heading text-3xl text-center">
               {singleProduct.name}
             </h4>
-            <ReviewStars stars={singleProduct.averageRating} />
+            <div className="py-2">
+              <ReviewStars stars={singleProduct.averageRating} />
+            </div>
             <hr className="m-4" />
           </div>
           <div className="h-[20rem] w-[15rem] md:h-[30rem] md:w-[25rem] lg:h-[40rem] lg:w-full cursor-pointer shadow-lg rounded-lg">
@@ -202,9 +204,9 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-      <div className="m-8">
-        <div className="lg:hidden flex flex-col justify-center items-center mx-3 sm:mx-20">
-          <div className="w-full px-4 max-h-[400px] overflow-scroll bg-green-100 p-4 rounded-lg">
+      <div className="my-8 mx-3 sm:mx-10 md:mx-20">
+        <div className="lg:hidden flex flex-col justify-center items-center">
+          <div className="w-full px-4 max-h-[400px] overflow-scroll bg-green-100 py-4 rounded-lg">
             <h1 className="font-heading text-2xl underline pb-4">
               Reviews ({reviews.length})
             </h1>
