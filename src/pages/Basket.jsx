@@ -14,10 +14,10 @@ const Basket = () => {
   const navigate = useNavigate();
 
   const checkout = () => {
-    setGoToCheckout(true);
     if (user) {
       navigate("/store/checkout");
     } else {
+      setGoToCheckout(true);
       navigate("/login");
     }
   };

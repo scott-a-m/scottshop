@@ -82,7 +82,7 @@ const EditReview = () => {
         onSubmit={handleSubmit}
         className="w-[400px] md:w-[500px] lg:w-[600px] text-center p-4 bg-green-200 rounded-md"
       >
-        <h1 className="font-heading text-2xl pb-4">Write Review</h1>
+        <h1 className="font-heading text-2xl pb-4">Edit Review</h1>
         <div className="grid grid-cols-[auto_1fr] gap-4 items-start">
           <div>
             <div className="flex justify-center py-4">
@@ -149,9 +149,16 @@ const EditReview = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-between">
           <button type="submit" className="btn-standard">
             Submit
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate("/user/account")}
+            className="btn-cancel"
+          >
+            Cancel
           </button>
         </div>
       </form>

@@ -1,5 +1,5 @@
 import React from "react";
-import { IoShirt } from "react-icons/io5";
+import { FiMenu } from "react-icons/fi";
 import { useUserContext } from "../context/User_Context";
 
 const SidebarHeader = () => {
@@ -16,10 +16,10 @@ const SidebarHeader = () => {
         </div>
         <div>
           <button
-            className="cursor-pointer text-white text-3xl"
+            className="cursor-pointer transition-all duration-500 text-white text-3xl hover:rotate-90"
             onClick={() => toggleSidebar("open")}
           >
-            <IoShirt />
+            <FiMenu />
           </button>
         </div>
       </div>

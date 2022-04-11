@@ -130,7 +130,11 @@ const AccountPortal = () => {
                     return b.updatedAt - a.updatedAt;
                   })
                   .map((review, index) => (
-                    <ReviewItem key={index} {...review}></ReviewItem>
+                    <ReviewItem
+                      key={index}
+                      {...review}
+                      setLoading={setLoading}
+                    ></ReviewItem>
                   ))}
             </div>
           </div>

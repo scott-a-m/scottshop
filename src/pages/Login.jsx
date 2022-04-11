@@ -8,8 +8,14 @@ import Message from "../components/Message";
 import { useUserContext } from "../context/User_Context";
 
 const Login = () => {
-  const { showMessage, message, user, getUser, go_to_checkout } =
-    useUserContext();
+  const {
+    showMessage,
+    message,
+    user,
+    getUser,
+    go_to_checkout,
+    setGoToCheckout,
+  } = useUserContext();
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -72,14 +78,15 @@ const Login = () => {
     }));
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     if (go_to_checkout) {
-  //       return navigate("/store/checkout");
-  //     }
-  //     return navigate("/");
-  //   }
-  // }, [navigate, user]);
+  useEffect(() => {
+    if (user) {
+      if (go_to_checkout) {
+        setGoToCheckout(false);
+        return navigate("/store/checkout");
+      }
+      return navigate("/");
+    }
+  }, [navigate, user]);
 
   useEffect(() => {
     showMessage();
