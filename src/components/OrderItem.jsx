@@ -69,16 +69,19 @@ const OrderItem = ({
   return (
     <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[650px] overflow-scroll border-[1px] border-green-200">
       <div>
-        <div className="flex justify-between px-5 items-center">
-          <h1 className="py-3 font-bold text-sm">ID: {_id}</h1>
+        <div className="py-1">
+          <h1>
+            <span className="font-bold">id:</span>
+            {_id}
+          </h1>
           <h1
-            className={`py-3 ${
+            className={`py-1 ${
               value === "paid"
                 ? "text-green-500"
                 : value === "pending"
                 ? "text-yellow-500"
                 : "text-red-500"
-            } text-2xl font-bold font-heading`}
+            } text-base xs:text-lg font-bold font-heading`}
           >
             {status}
           </h1>
@@ -151,15 +154,7 @@ const OrderItem = ({
                 {status === "paid" && (
                   <div>
                     {checkReview(product) ? (
-                      <button
-                        className="btn-standard"
-                        onClick={() => {
-                          initiateUserReview(name, product, color, size, image);
-                          navigate(`/user/account/review/${product}`);
-                        }}
-                      >
-                        Edit Review
-                      </button>
+                      <button className="btn-disabled">Reviewed</button>
                     ) : (
                       <button
                         className="btn-standard"

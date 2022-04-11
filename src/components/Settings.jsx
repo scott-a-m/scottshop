@@ -156,19 +156,19 @@ const Settings = () => {
         <div className="form-box">
           {user && (
             <div>
-              <h1 className="font-heading text-3xl p-4">
+              <h1 className="font-heading text-2xl sm:text-3xl p-4">
                 {polishName(user.name)} Account
               </h1>
               {message.show && <Message />}
               {!hideWindow && (
-                <div style={{ fontSize: "1.2rem" }}>
+                <div>
                   <p className="pb-4">
                     <strong>User Id: </strong>
                     {user.userId}.
                   </p>
 
                   <button
-                    className="btn text-base"
+                    className="btn text-sm md:text-base"
                     onClick={() => {
                       setUpdateNameWindow(true);
                       setHideWindow(true);
@@ -178,7 +178,7 @@ const Settings = () => {
                     Update Username
                   </button>
                   <button
-                    className="btn text-base"
+                    className="btn text-sm md:text-base"
                     onClick={() => {
                       setUpdatePasswordWindow(true);
                       setHideWindow(true);
@@ -203,14 +203,14 @@ const Settings = () => {
               <br />
               <div className="btn-task">
                 <button
-                  className="btn"
+                  className="btn text-sm sm:text-base"
                   disabled={btnStatus.disabled}
                   style={{ opacity: btnStatus.opacity }}
                 >
                   {btnStatus.text}
                 </button>
                 <button
-                  className="btn"
+                  className="btn text-sm sm:text-base"
                   onClick={() => closeWindow("name")}
                   type="submit"
                 >
@@ -238,14 +238,17 @@ const Settings = () => {
               <br />
               <div className="btn-task">
                 <button
-                  className="btn"
+                  className="btn text-sm sm:text-base"
                   disabled={btnStatus.disabled}
                   type="submit"
                   style={{ opacity: btnStatus.opacity }}
                 >
                   {btnStatus.text}
                 </button>
-                <button className="btn" onClick={() => closeWindow("pass")}>
+                <button
+                  className="btn text-sm sm:text-base"
+                  onClick={() => closeWindow("pass")}
+                >
                   Cancel
                 </button>
               </div>

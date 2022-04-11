@@ -27,15 +27,15 @@ const BasketItem = ({
   return (
     <div>
       <hr />
-      <div className="grid sm:grid-cols-[200px_200px_auto] py-4 items-center justify-evenly gap-4 text-center">
-        <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[120px_80px] gap-4">
+      <div className="grid xs:grid-cols-[200px_200px_auto] py-4 items-center justify-evenly gap-4 text-center">
+        <div className="grid grid-cols-[90px_1fr] xs:grid-cols-[120px_80px] gap-4">
           <img
-            className="w-full sm:h-[160px] h-[130px] rounded-md"
+            className="w-full xs:h-[160px] h-[150px] rounded-md"
             src={image}
             alt={name}
           ></img>
-          <div className="grid grid-rows-2 sm:flex sm:flex-col justify-evenly items-center sm:justify-evenly">
-            <div className="flex sm:flex-col items-center justify-between">
+          <div className="grid grid-rows-2 xs:flex xs:flex-col justify-center items-center xs:justify-evenly">
+            <div className="flex xs:flex-col items-center justify-evenly">
               <p className="capitalize font-heading text-xl">{name}</p>
               <div className="flex items-center">
                 <button
@@ -48,25 +48,22 @@ const BasketItem = ({
                 <p className="text-sm">{formatPrice(price)}</p>
               </div>
             </div>
-            <div className="sm:hidden flex items-center justify-center">
+            <div className="xs:hidden flex xs:flex-col items-center justify-center">
               <AmountButtons
                 amount={amount}
                 increase={increase}
                 decrease={decrease}
               />
-
-              <div className="sm:hidden w-[20px]">
-                <button onClick={() => removeItem(id)}>
-                  <FaTrash />
-                </button>
-              </div>
-            </div>
-            <div className="sm: hidden">
               <p>{formatPrice(price * amount)}</p>
+            </div>
+            <div className="xs:hidden">
+              <button onClick={() => removeItem(id)}>
+                <FaTrash />
+              </button>
             </div>
           </div>
         </div>
-        <div className="hidden sm:flex flex-col items-center justify-center">
+        <div className="hidden xs:flex flex-col items-center justify-center">
           <AmountButtons
             amount={amount}
             increase={increase}
@@ -74,7 +71,7 @@ const BasketItem = ({
           />
           <p>{formatPrice(price * amount)}</p>
         </div>
-        <div className="hidden sm:block">
+        <div className="hidden xs:block">
           <button onClick={() => removeItem(id)}>
             <FaTrash />
           </button>

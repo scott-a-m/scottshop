@@ -5,6 +5,8 @@ import SingleProduct from "../pages/SingleProduct";
 import ReviewStars from "./ReviewStars";
 import { makeDate } from "../helpers";
 import { useUserContext } from "../context/User_Context";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ReviewItem = ({
   rating,
@@ -16,11 +18,27 @@ const ReviewItem = ({
   image,
   color,
   updatedAt,
+  setLoading,
 }) => {
-  const { user } = useUserContext();
+  const { user, getUserReviews, initiateUserReview } = useUserContext();
+  const [cancelWindow, setCancelWindow] = useState(false);
+
+  const navigate = useNavigate();
+
+  const deleteReview = async () => {
+    setLoading(true);
+    try {
+      await axios.delete(`/api/v1/reviews/${_id}`);
+      setLoading(false);
+      getUserReviews();
+    } catch (error) {
+      console.log(error.response);
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[400px] overflow-scroll border-[1px] border-green-200">
+    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[450px] overflow-scroll border-[1px] border-green-200">
       <div>
         <div className="flex justify-between px-5 items-center">
           <div className="flex items-center">
@@ -49,6 +67,50 @@ const ReviewItem = ({
           src={image}
           alt={product.name}
         ></img>
+      </div>
+      <div>
+        {!cancelWindow && (
+          <div className="flex justify-between">
+            <button
+              className="btn-standard !w-[80px]"
+              onClick={() => {
+                initiateUserReview(
+                  product.name,
+                  product._id,
+                  color,
+                  size,
+                  image
+                );
+                navigate(`/user/account/review/${product._id}`);
+              }}
+            >
+              Edit
+            </button>
+            <button
+              className="btn-cancel !w-[80px]"
+              onClick={() => setCancelWindow(true)}
+            >
+              Delete
+            </button>
+          </div>
+        )}
+        {cancelWindow && (
+          <div className="flex justify-between items-center bg-red-500 rounded-md">
+            <button
+              className="bg-black text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-white hover:text-black !w-[80px]"
+              onClick={() => deleteReview(product._id)}
+            >
+              Yes
+            </button>
+            <h2 className="text-white">Delete Review?</h2>
+            <button
+              className="btn-standard !w-[80px]"
+              onClick={() => setCancelWindow(false)}
+            >
+              No
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex justify-between p-2 text-sm">
         <p>buyer: {user.name}</p>

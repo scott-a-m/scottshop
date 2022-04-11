@@ -12,7 +12,7 @@ const Error = () => {
             home
           </Link>
         </h1>
-        <ImConfused className="text-[10rem] text-white inline-block my-8 animate-bounce" />
+        <ImConfused className="text-[10rem] text-white inline-block my-4" />
       </div>
     </div>
   );

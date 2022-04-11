@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/User_Context";
 import ReviewStars from "../components/ReviewStars";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const WriteReview = () => {
   const {
@@ -38,11 +39,11 @@ const WriteReview = () => {
       navigate("/user/account");
     }
     if (single_review_success) {
-      setTimeout(() => {
-        navigate("/user/account");
-      }, 5000);
+      navigate("/user/account");
     }
   }, [single_review_success]);
+
+  if (single_review_loading) return <Loading />;
 
   return (
     <div className="full-page">
@@ -117,23 +118,16 @@ const WriteReview = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex justify-between">
+          <button type="submit" className="btn-standard">
+            Submit
+          </button>
           <button
-            type="submit"
-            className={
-              single_review_loading || single_review_success
-                ? "btn-disabled"
-                : "btn-standard"
-            }
-            disabled={
-              single_review_loading || single_review_success ? true : false
-            }
+            type="button"
+            onClick={() => navigate("/user/account")}
+            className="btn-cancel"
           >
-            {single_review_loading
-              ? "Processing..."
-              : single_review_success
-              ? "Review Complete"
-              : "Submit"}
+            Cancel
           </button>
         </div>
       </form>

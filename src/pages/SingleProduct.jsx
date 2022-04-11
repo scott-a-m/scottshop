@@ -115,7 +115,7 @@ const SingleProduct = () => {
               })}
             </div>
           </div>
-          <div className="m-4">
+          <div className="mt-4">
             <h4 className="font-heading text-2xl underline">Sizes</h4>
             <div className="flex justify-center">
               {singleProduct.sizes.map((size, index) => {
@@ -135,35 +135,37 @@ const SingleProduct = () => {
             </div>
           </div>
           {singleProduct.inventory > 0 && (
-            <div>
-              <p className="text-green-500 h-5">{message}</p>
-              <AmountButtons
-                increase={increase}
-                decrease={decrease}
-                amount={amount}
-              />
-              <button
-                type="button"
-                className="btn-standard"
-                onClick={() => {
-                  if (checkBasket()) {
-                    addToBasket(
-                      singleProduct._id,
-                      singleProduct,
-                      mainColor,
-                      amount,
-                      mainSize
-                    );
-                    navigate("/store/basket");
-                  }
-                }}
-              >
-                Add to Basket
-              </button>
+            <div className="flex justify-center">
+              <div className="w-[240px]">
+                <p className="text-green-500 h-5">{message}</p>
+                <AmountButtons
+                  increase={increase}
+                  decrease={decrease}
+                  amount={amount}
+                />
+                <button
+                  type="button"
+                  className="btn-standard"
+                  onClick={() => {
+                    if (checkBasket()) {
+                      addToBasket(
+                        singleProduct._id,
+                        singleProduct,
+                        mainColor,
+                        amount,
+                        mainSize
+                      );
+                      navigate("/store/basket");
+                    }
+                  }}
+                >
+                  Add to Basket
+                </button>
+              </div>
             </div>
           )}
-          <div className="hidden lg:flex flex-col justify-center items-center py-4">
-            <div className="w-[500px] max-h-[400px] overflow-scroll bg-green-100 p-4 rounded-lg">
+          <div className="hidden lg:flex flex-col justify-center items-center py-8">
+            <div className="w-[500px] max-h-[400px] overflow-scroll bg-green-100 p-4 rounded-lg mb-4">
               <h1 className="font-heading text-2xl underline pb-4">
                 Reviews ({reviews.length})
               </h1>
@@ -200,34 +202,40 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-      <div className="mt-8 ">
+      <div className="m-8">
         <div className="lg:hidden flex flex-col justify-center items-center mx-3 sm:mx-20">
           <div className="w-full px-4 max-h-[400px] overflow-scroll bg-green-100 p-4 rounded-lg">
             <h1 className="font-heading text-2xl underline pb-4">
               Reviews ({reviews.length})
             </h1>
-            {reviews.map((review, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`p-4 ${
-                    index % 2 === 0 ? "bg-white" : "bg-green-50"
-                  }`}
-                >
-                  <div className="flex justify-between pt-2">
-                    <h1 className="font-heading text-xl">{review.title}</h1>
-                    <ReviewStars stars={review.rating} />
-                  </div>
+            {reviews
+              .sort((a, b) => {
+                a.updatedAt = getTime(a.updatedAt);
+                b.updatedAt = getTime(b.updatedAt);
+                return b.updatedAt - a.updatedAt;
+              })
+              .map((review, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`p-4 ${
+                      index % 2 === 0 ? "bg-white" : "bg-green-50"
+                    }`}
+                  >
+                    <div className="flex justify-between pt-2">
+                      <h1 className="font-heading text-xl">{review.title}</h1>
+                      <ReviewStars stars={review.rating} />
+                    </div>
 
-                  <p className="text-left py-4">{review.comment}</p>
-                  <div className="flex justify-between items-center text-sm">
-                    <h3>by: {review.user.substring(0, 3) + "*****"}</h3>
+                    <p className="text-left py-4">{review.comment}</p>
+                    <div className="flex justify-between items-center text-sm">
+                      <h3>by: {review.user.substring(0, 3) + "*****"}</h3>
 
-                    <h3>{makeDate(review.createdAt)}</h3>
+                      <h3>{makeDate(review.createdAt)}</h3>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       </div>

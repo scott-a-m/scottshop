@@ -14,11 +14,7 @@ const ProductsList = () => {
 
   return (
     <div>
-      {/* <h1 className="py-4">
-        {products.length === 1 ? `1 Item` : `${products.length} Items`}
-      </h1> */}
-
-      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4">
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mx-4 pb-8">
         {products.map((product) => {
           const { image, name, _id, price, numOfReviews, averageRating } =
             product;
@@ -37,7 +33,9 @@ const ProductsList = () => {
               <p className="absolute top-0 left-0 text-center m-2 p-1 bg-green-200 rounded-lg">
                 {formatPrice(price)}
               </p>
-              <ReviewStars stars={averageRating} reviews={numOfReviews} />
+              <div className="pt-1 pb-2">
+                <ReviewStars stars={averageRating} reviews={numOfReviews} />
+              </div>
             </div>
           );
         })}
