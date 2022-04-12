@@ -3,6 +3,7 @@ import AmountButtons from "./AmountButtons";
 import { formatPrice } from "../helpers";
 import { FaTrash } from "react-icons/fa";
 import { useStoreContext } from "../context/Store_Context";
+import { Link } from "react-router-dom";
 
 const BasketItem = ({
   id,
@@ -29,17 +30,19 @@ const BasketItem = ({
       <hr />
       <div className="grid sm:grid-cols-[200px_200px_auto] py-4 items-center justify-evenly gap-4 text-center">
         <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[120px_80px] gap-4">
-          <img
-            className="w-full sm:h-[160px] h-[130px] rounded-md"
-            src={image}
-            alt={name}
-          ></img>
+          <Link to={`/store/${productId}`}>
+            <img
+              className="w-full sm:h-[160px] h-[130px] rounded-md"
+              src={image}
+              alt={name}
+            ></img>
+          </Link>
           <div className="grid grid-rows-2 sm:flex sm:flex-col justify-evenly items-center sm:justify-evenly">
             <div className="flex sm:flex-col items-center justify-between">
               <p className="capitalize font-heading text-xl">{name}</p>
               <div className="flex items-center">
                 <button
-                  className="w-5 h-5 border-2 border-black m-1 rounded-md transition-all duration-500"
+                  className="cursor-default w-5 h-5 border-2 border-black m-1 rounded-md transition-all duration-500"
                   style={{ backgroundColor: color }}
                 ></button>
                 <p className="text-sm">{size}</p>

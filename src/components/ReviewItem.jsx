@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useStoreContext } from "../context/Store_Context";
-import { formatPrice } from "../helpers";
-import SingleProduct from "../pages/SingleProduct";
+import React, { useState } from "react";
 import ReviewStars from "./ReviewStars";
 import { makeDate } from "../helpers";
 import { useUserContext } from "../context/User_Context";

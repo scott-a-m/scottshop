@@ -67,7 +67,7 @@ const OrderItem = ({
   };
 
   return (
-    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[650px] overflow-scroll border-[1px] border-green-200">
+    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[660px] overflow-scroll border-[1px] border-green-200">
       <div>
         <div className="py-1">
           <h1>

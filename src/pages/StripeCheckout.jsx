@@ -12,6 +12,7 @@ import { formatPrice } from "../helpers";
 import axios from "axios";
 import Error from "../components/Error";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC);
 
@@ -25,6 +26,7 @@ const CheckoutForm = () => {
   const [orderId, setOrderId] = useState("");
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
+  const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
   const [total, setTotal] = useState(null);
@@ -33,6 +35,7 @@ const CheckoutForm = () => {
   const elements = useElements();
 
   const createPaymentIntent = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.post("/api/v1/orders", {
         basket,
@@ -45,19 +48,25 @@ const CheckoutForm = () => {
       setTotal(data.order.total);
       setOrderId(data.order._id);
       clearBasket();
+      setLoading(false);
     } catch (error) {
       setCheckoutError(true);
+      setLoading(false);
     }
   };
   const reactivatePaymentIntent = async (stripeClientSecret, orderId) => {
+    setLoading(true);
     try {
       const { data } = await axios.get(`/api/v1/orders/${orderId}`);
       setClientSecret(stripeClientSecret);
       setTotal(data.order.total);
       setOrderId(orderId);
       removeOrderSecret();
+      clearBasket();
+      setLoading(false);
     } catch (error) {
       setCheckoutError(true);
+      setLoading(false);
     }
   };
 
@@ -68,13 +77,8 @@ const CheckoutForm = () => {
         single_order_secret.orderId
       );
     }
-
-    if (basket.length < 1) {
-      console.log("other");
-      return navigate("/");
-    }
-
-    createPaymentIntent();
+    return createPaymentIntent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = async (event) => {
@@ -96,7 +100,7 @@ const CheckoutForm = () => {
       setProcessing(false);
     } else {
       try {
-        const { data } = await axios.patch(`/api/v1/orders/${orderId}`, {
+        await axios.patch(`/api/v1/orders/${orderId}`, {
           paymentIntentId: payload.paymentIntent.id,
         });
       } catch (error) {
@@ -112,6 +116,8 @@ const CheckoutForm = () => {
   };
 
   if (checkoutError) return <Error />;
+
+  if (loading) return <Loading />;
 
   return (
     <div className="form-container">
@@ -131,7 +137,9 @@ const CheckoutForm = () => {
             <p className="py-2">
               Hello,{" "}
               <span className="capitalize font-bold">{user && user.name}</span>.
-              Your total is {total && formatPrice(total)}
+              Your total for order <span className="text-sm">#{orderId}</span>{" "}
+              is{" "}
+              <span className="font-bold">{total && formatPrice(total)}</span>
             </p>
             <p className="py-1 md:py-2 pb-3 md:pb-6 text-sm">
               Scott Shop was built as a personal coding project.

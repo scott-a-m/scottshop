@@ -20,6 +20,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Contact from "./pages/Contact";
 import Credits from "./pages/Credits";
 import EditReview from "./pages/EditReview";
+import CheckoutRoute from "./pages/CheckoutRoute";
 
 const App = () => {
   return (
@@ -37,9 +38,9 @@ const App = () => {
         <Route
           path="/store/checkout"
           element={
-            <ProtectedRoute>
+            <CheckoutRoute>
               <StripeCheckout />
-            </ProtectedRoute>
+            </CheckoutRoute>
           }
         />
         <Route

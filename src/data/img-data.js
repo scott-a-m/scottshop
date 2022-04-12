@@ -129,11 +129,11 @@ const clothesImages = [
   },
   {
     image:
-      "https://res.cloudinary.com/scott-cloud/image/upload/v1648621593/scott-shop/mens-shorts-01_muuhba.jpg",
-    unsplahSrc: "https://unsplash.com/photos/c11b8Xwta3w",
+      "https://res.cloudinary.com/scott-cloud/image/upload/v1649725561/scott-shop/mens-shorts-01_k6rhzm.jpg",
+    unsplahSrc: "https://unsplash.com/photos/A_xuGH5aSuc",
     cat: "shorts",
-    by: "Jaclyn Moy",
-    profile: "https://unsplash.com/@jelizabm",
+    by: "Philip Myrtorp",
+    profile: "https://unsplash.com/@philipmyr",
   },
   {
     image:

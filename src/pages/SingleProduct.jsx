@@ -6,7 +6,6 @@ import AmountButtons from "../components/AmountButtons";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import NotFound from "./NotFound";
-import { GET_REVIEWS_END } from "../actions";
 import ReviewStars from "../components/ReviewStars";
 import { makeDate, getTime } from "../helpers";
 
@@ -20,6 +19,7 @@ const SingleProduct = () => {
     addToBasket,
     getReviews,
     reviews,
+    basket,
   } = useStoreContext();
   const { id } = useParams();
   const [mainColor, setMainColor] = useState(null);
@@ -27,6 +27,7 @@ const SingleProduct = () => {
   const [amount, setAmount] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
   const [message, setMessage] = useState("");
+  const [goToBasket, setGoToBasket] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,9 +46,10 @@ const SingleProduct = () => {
       setTimeout(() => {
         setMessage("");
       }, 3000);
-      return false;
+      return;
     }
-    return true;
+    setGoToBasket(true);
+    addToBasket(singleProduct._id, singleProduct, mainColor, amount, mainSize);
   };
 
   useEffect(() => {
@@ -60,6 +62,14 @@ const SingleProduct = () => {
   useEffect(() => {
     getReviews(`/api/v1/products/${id}/reviews`);
   }, [id]);
+
+  useEffect(() => {
+    if (goToBasket) {
+      setGoToBasket(false);
+      navigate("/store/basket");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [basket]);
 
   if (products_loading || reviews_loading) return <Loading />;
 
@@ -75,7 +85,7 @@ const SingleProduct = () => {
             <h4 className="font-heading text-3xl text-center">
               {singleProduct.name}
             </h4>
-            <div className="py-2">
+            <div className="pt-2">
               <ReviewStars stars={singleProduct.averageRating} />
             </div>
             <hr className="m-4" />
@@ -93,8 +103,9 @@ const SingleProduct = () => {
             <h4 className="font-heading text-3xl text-center">
               {singleProduct.name}
             </h4>
-            <ReviewStars stars={singleProduct.averageRating} />
-
+            <div className="pt-2">
+              <ReviewStars stars={singleProduct.averageRating} />
+            </div>
             <hr className="m-4" />
           </div>
           <div className="m-4">
@@ -148,18 +159,7 @@ const SingleProduct = () => {
                 <button
                   type="button"
                   className="btn-standard"
-                  onClick={() => {
-                    if (checkBasket()) {
-                      addToBasket(
-                        singleProduct._id,
-                        singleProduct,
-                        mainColor,
-                        amount,
-                        mainSize
-                      );
-                      navigate("/store/basket");
-                    }
-                  }}
+                  onClick={() => checkBasket()}
                 >
                   Add to Basket
                 </button>

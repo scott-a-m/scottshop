@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useUserContext } from "../context/User_Context";
 import OrderItem from "../components/OrderItem";
 import ReviewItem from "../components/ReviewItem";
@@ -38,11 +37,11 @@ const AccountPortal = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      getUserOrders();
-      getUserReviews();
-    }
-  }, [user]);
+    getUserOrders();
+    getUserReviews();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) return <Loading />;
 
@@ -82,8 +81,8 @@ const AccountPortal = () => {
 
       <div>
         {showOrders && (
-          <div className="mt-28">
-            <form>
+          <div className="mt-32">
+            <form className="fixed top-[96px] left-0 p-1 bg-green-200 rounded-br-md">
               <label htmlFor="sort" className="font-heading text-xl px-2">
                 Status:
               </label>

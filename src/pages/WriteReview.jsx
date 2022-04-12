@@ -20,6 +20,7 @@ const WriteReview = () => {
     comment: "",
     rating: 5,
   });
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +42,14 @@ const WriteReview = () => {
     if (single_review_success) {
       navigate("/user/account");
     }
-  }, [single_review_success]);
+
+    if (single_review_error) {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
+    }
+  }, [single_review_success, single_review_error]);
 
   if (single_review_loading) return <Loading />;
 
@@ -118,7 +126,12 @@ const WriteReview = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4 flex justify-between">
+        {error && (
+          <p className="bg-white p-1 text-red-500 mt-3">
+            Oops an error occured; please try again
+          </p>
+        )}
+        <div className="mt-2 flex justify-between">
           <button type="submit" className="btn-standard">
             Submit
           </button>
