@@ -1,7 +1,7 @@
 import React from "react";
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
-const ReviewStars = ({ reviews, stars }) => {
+const ReviewStars = ({ stars }) => {
   const numberOfStars = Array.from({ length: 5 }, (_, index) => {
     const fullNumber = index + 1;
     const halfNumber = index + 0.5;

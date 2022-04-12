@@ -49,7 +49,7 @@ const Basket = () => {
               <BasketItem key={item.id} {...item} />
             ))}
           </div>
-          <div className="flex justify-center mt-5 text-sm">
+          <div className="flex justify-center my-5 text-sm">
             <button
               onClick={() => clearBasket()}
               className="flex items-center gap-2 p-2 rounded-md bg-red-500 text-white transition-all duration-500 hover:bg-red-700"
@@ -58,7 +58,7 @@ const Basket = () => {
             </button>
           </div>
         </div>
-        <div className="bg-white text-center w-full shadow-xl shadow-green-200 h-60 md:m-4 rounded flex flex-col justify-between self-start sticky top-20">
+        <div className="bg-white text-center w-full shadow-xl shadow-green-200 h-60 md:m-4 rounded flex flex-col justify-between self-start sticky top-12 md:top-20">
           <div>
             <h1 className="font-heading text-2xl py-3">Order Summary</h1>
             <hr />

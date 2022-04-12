@@ -43,6 +43,9 @@ const EditReview = () => {
       console.log(error.response);
       setLoading(false);
       setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
     }
   };
 
@@ -68,6 +71,7 @@ const EditReview = () => {
     if (updateSuccess) {
       navigate("/user/account");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateSuccess]);
 
   if (reviews_loading || loading) return <Loading />;
@@ -149,7 +153,12 @@ const EditReview = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4 flex justify-between">
+        {error && (
+          <p className="bg-white p-1 text-red-500 mt-3">
+            Oops an error occured; please try again
+          </p>
+        )}
+        <div className="mt-2 flex justify-between">
           <button type="submit" className="btn-standard">
             Submit
           </button>
