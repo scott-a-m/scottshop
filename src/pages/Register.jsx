@@ -153,14 +153,14 @@ const Register = () => {
               onChangeFunc={handleChange}
             />
             <button
-              className="btn"
+              className="btn-standard !w-[100px] !my-4 sm:!my-6"
               disabled={btnStatus.disabled}
               style={{ opacity: btnStatus.opacity }}
             >
               {btnStatus.text}
             </button>
-            <p>
-              Already have an account, please{" "}
+            <p className="text-sm sm:text-base">
+              Already have an account? Please{" "}
               <Link to="/login" className="text-link">
                 login
               </Link>

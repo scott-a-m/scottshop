@@ -28,11 +28,11 @@ const Credits = () => {
             {clothesImages
               .filter((item) => item.cat === "t-shirt")
               .map((item, index) => {
-                const { by, profile } = item;
+                const { by, unsplahSrc } = item;
                 return (
                   <li className="list-none" key={index}>
                     <a
-                      href={profile}
+                      href={unsplahSrc}
                       target="_blank"
                       rel="noreferrer"
                       className="px-1 link"
@@ -50,11 +50,11 @@ const Credits = () => {
             {clothesImages
               .filter((item) => item.cat === "jumper")
               .map((item, index) => {
-                const { by, profile } = item;
+                const { by, unsplahSrc } = item;
                 return (
                   <li className="list-none" key={index}>
                     <a
-                      href={profile}
+                      href={unsplahSrc}
                       target="_blank"
                       rel="noreferrer"
                       className="px-1 link"
@@ -72,11 +72,11 @@ const Credits = () => {
             {clothesImages
               .filter((item) => item.cat === "shorts")
               .map((item, index) => {
-                const { by, profile } = item;
+                const { by, unsplahSrc } = item;
                 return (
                   <li className="list-none" key={index}>
                     <a
-                      href={profile}
+                      href={unsplahSrc}
                       target="_blank"
                       rel="noreferrer"
                       className="px-1 link"
@@ -94,11 +94,11 @@ const Credits = () => {
             {clothesImages
               .filter((item) => item.cat === "jeans")
               .map((item, index) => {
-                const { by, profile } = item;
+                const { by, unsplahSrc } = item;
                 return (
                   <li className="list-none" key={index}>
                     <a
-                      href={profile}
+                      href={unsplahSrc}
                       target="_blank"
                       rel="noreferrer"
                       className="px-1 link"
@@ -114,11 +114,11 @@ const Credits = () => {
         <div>
           <ul className="flex justify-center">
             {otherImages.map((item, index) => {
-              const { by, profile } = item;
+              const { by, unsplahSrc } = item;
               return (
                 <li className="list-none" key={index}>
                   <a
-                    href={profile}
+                    href={unsplahSrc}
                     target="_blank"
                     rel="noreferrer"
                     className="px-1 link"

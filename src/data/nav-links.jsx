@@ -6,27 +6,8 @@ import { MdEmail } from "react-icons/md";
 import { GiShoppingBag } from "react-icons/gi";
 import { RiCustomerServiceFill } from "react-icons/ri";
 import { GiGreenhouse } from "react-icons/gi";
-import { RiShirtFill } from "react-icons/ri";
 import { BsLightningFill } from "react-icons/bs";
 import { ImCool2 } from "react-icons/im";
-
-// hero
-// https://unsplash.com/photos/P3pI6xzovu0
-
-// customer support
-// https://unsplash.com/photos/QckxruozjRg
-
-//delivery
-// https://unsplash.com/photos/BFdSCxmqvYc
-
-//sustainable
-// https://unsplash.com/photos/x8ZStukS2PM
-
-// trends
-// https://unsplash.com/photos/_3Q3tsJ01nc
-
-// contact us
-// https://unsplash.com/photos/idhx-MOCDSk
 
 const links = [
   {

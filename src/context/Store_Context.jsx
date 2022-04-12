@@ -64,7 +64,6 @@ const StoreProvider = ({ children }) => {
       const { data } = await axios.get(url);
       dispatch({ type: GET_PRODUCTS_END, payload: data.products });
     } catch (error) {
-      console.log(error);
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
@@ -74,7 +73,6 @@ const StoreProvider = ({ children }) => {
       const { data } = await axios.get(url);
       dispatch({ type: GET_REVIEWS_END, payload: data.reviews });
     } catch (error) {
-      console.log(error);
       dispatch({ type: GET_REVIEWS_ERROR });
     }
   };

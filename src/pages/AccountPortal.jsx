@@ -7,7 +7,7 @@ import Loading from "../components/Loading";
 import { getTime } from "../helpers";
 
 const AccountPortal = () => {
-  const { getUserOrders, user, user_orders, getUserReviews, user_reviews } =
+  const { getUserOrders, user_orders, getUserReviews, user_reviews } =
     useUserContext();
 
   const [showOrders, setShowOrders] = useState(true);
@@ -82,7 +82,7 @@ const AccountPortal = () => {
       <div>
         {showOrders && (
           <div className="mt-32">
-            <form className="fixed top-[96px] left-0 p-1 bg-green-200 rounded-br-md">
+            <form className="fixed top-[96px] z-10 left-0 p-1 bg-green-200 rounded-br-md">
               <label htmlFor="sort" className="font-heading text-xl px-2">
                 Status:
               </label>

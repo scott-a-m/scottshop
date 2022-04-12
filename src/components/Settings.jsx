@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import AccountFormRow from "./AccountFormRow";
 import { useUserContext } from "../context/User_Context";
 import Message from "./Message";
@@ -23,8 +22,6 @@ const Settings = () => {
     disabled: false,
     opacity: 1,
   });
-
-  const navigate = useNavigate();
 
   const updateName = async (e) => {
     e.preventDefault();
