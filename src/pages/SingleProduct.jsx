@@ -61,6 +61,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     getReviews(`/api/v1/products/${id}/reviews`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {

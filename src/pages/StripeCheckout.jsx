@@ -103,14 +103,16 @@ const CheckoutForm = () => {
         await axios.patch(`/api/v1/orders/${orderId}`, {
           paymentIntentId: payload.paymentIntent.id,
         });
+        setError(null);
       } catch (error) {
-        console.log(error.response);
+        setError(
+          "Payment was successful but an error occured in our order system; it will be rectified shortly."
+        );
       }
-      setError(null);
       setProcessing(false);
       setSucceeded(true);
       setTimeout(() => {
-        navigate("/");
+        navigate("/user/account");
       }, 5000);
     }
   };
@@ -130,7 +132,7 @@ const CheckoutForm = () => {
               <span className="capitalize font-bold">{user && user.name}</span>.
             </h4>
             <h4>Your payment was successful</h4>
-            <h4>Redirecting to homepage...</h4>
+            <h4>Redirecting to your account portal...</h4>
           </article>
         ) : (
           <article>

@@ -121,6 +121,7 @@ const store_reducer = (state, action) => {
   if (action.type === CLEAR_FILTERS) {
     return {
       ...state,
+      sort: "price-lowest",
       filters: {
         ...state.filters,
         type: "all",

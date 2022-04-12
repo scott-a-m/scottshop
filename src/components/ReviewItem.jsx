@@ -19,6 +19,7 @@ const ReviewItem = ({
 }) => {
   const { user, getUserReviews, initiateUserReview } = useUserContext();
   const [cancelWindow, setCancelWindow] = useState(false);
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -29,13 +30,16 @@ const ReviewItem = ({
       setLoading(false);
       getUserReviews();
     } catch (error) {
-      console.log(error.response);
       setLoading(false);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
     }
   };
 
   return (
-    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[450px] overflow-scroll border-[1px] border-green-200">
+    <div className="relative text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[450px] overflow-scroll border-[1px] border-green-200">
       <div>
         <div className="flex justify-between px-5 items-center">
           <div className="flex items-center">
@@ -58,14 +62,14 @@ const ReviewItem = ({
         <h1 className="py-2">{comment}</h1>
         <div></div>
       </div>
-      <div className="flex justify-center py-4">
+      <div className="flex justify-center py-4 mb-8">
         <img
           className="w-[120px] h-[160px] rounded-md"
           src={image}
           alt={product.name}
         ></img>
       </div>
-      <div>
+      <div className="absolute bottom-8 w-full">
         {!cancelWindow && (
           <div className="flex justify-between">
             <button
@@ -91,7 +95,7 @@ const ReviewItem = ({
             </button>
           </div>
         )}
-        {cancelWindow && (
+        {cancelWindow && !error && (
           <div className="flex justify-between items-center bg-red-500 rounded-md">
             <button
               className="bg-black text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-white hover:text-black !w-[80px]"
@@ -106,6 +110,11 @@ const ReviewItem = ({
             >
               No
             </button>
+          </div>
+        )}
+        {cancelWindow && error && (
+          <div className="p-2 m-2 bg-red-500 text-white rounded-md">
+            <p>Oops an error occured; please try again</p>
           </div>
         )}
       </div>

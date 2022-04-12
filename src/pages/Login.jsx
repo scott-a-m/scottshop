@@ -86,6 +86,7 @@ const Login = () => {
       }
       return navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate, user]);
 
   useEffect(() => {
@@ -116,19 +117,23 @@ const Login = () => {
               value={loginData.password}
               onChangeFunc={handleChange}
             />
-            <button className="btn" disabled={btnStatus.disabled} type="submit">
+            <button
+              className="btn-standard !w-[100px] !my-4 sm:!my-6"
+              disabled={btnStatus.disabled}
+              type="submit"
+            >
               {btnStatus.text}
             </button>
-            <p>
-              Don't have an account, please{" "}
+            <p className="text-sm sm:text-base">
+              Don't have an account? Please{" "}
               <Link to="/register" className="text-link">
                 register
               </Link>
               .
               <br />
-              Forgot your password, please{" "}
+              Forgot your password?{" "}
               <Link to="/user/forgot-password" className="text-link">
-                reset password
+                Reset password
               </Link>
               .
             </p>

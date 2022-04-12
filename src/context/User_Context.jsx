@@ -114,7 +114,7 @@ const UserProvider = ({ children }) => {
 
     dispatch({ type: CREATE_USER_REVIEW_PROCESS });
     try {
-      const { data } = await axios.post("/api/v1/reviews", {
+      await axios.post("/api/v1/reviews", {
         product,
         size,
         color,

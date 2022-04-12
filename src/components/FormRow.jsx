@@ -11,7 +11,7 @@ const FormRow = ({ name, type, value, onChangeFunc }) => {
         value={value}
         name={name}
         onChange={onChangeFunc}
-        className="w-full h-8"
+        className="w-full h-8 rounded-sm"
         required={true}
       />
     </div>

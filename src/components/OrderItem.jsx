@@ -25,6 +25,7 @@ const OrderItem = ({
   } = useUserContext();
   const navigate = useNavigate();
   const [cancelWindow, setCancelWindow] = useState(false);
+  const [error, setError] = useState(false);
 
   const items = orderItems.reduce((total, item) => {
     total += item.amount;
@@ -50,6 +51,10 @@ const OrderItem = ({
       navigate("/store/checkout");
     } catch (error) {
       setLoading(false);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
     }
   };
 
@@ -62,16 +67,20 @@ const OrderItem = ({
       setLoading(false);
       getUserOrders();
     } catch (error) {
-      console.log(error.response);
+      setLoading(false);
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
     }
   };
 
   return (
-    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[660px] overflow-scroll border-[1px] border-green-200">
+    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[645px] overflow-scroll border-[1px] border-green-200">
       <div>
         <div className="py-1">
           <h1>
-            <span className="font-bold">id:</span>
+            <span className="font-bold">id: </span>
             {_id}
           </h1>
           <h1
@@ -172,6 +181,8 @@ const OrderItem = ({
             </div>
           );
         })}{" "}
+      </div>
+      <div>
         {status === "pending" && !cancelWindow && (
           <div className="flex justify-between">
             <button className="btn-standard !w-[80px]" onClick={payNow}>
@@ -185,7 +196,7 @@ const OrderItem = ({
             </button>
           </div>
         )}
-        {status === "pending" && cancelWindow && (
+        {status === "pending" && cancelWindow && !error && (
           <div className="flex justify-between items-center bg-red-500 rounded-md">
             <button
               className="bg-black text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-white hover:text-black !w-[80px]"
@@ -195,11 +206,16 @@ const OrderItem = ({
             </button>
             <h2 className="text-white">Cancel Order?</h2>
             <button
-              className="bg-yellow-400 text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-yellow-200 hover:text-black !w-[80px]"
+              className="btn-standard !w-[80px]"
               onClick={() => setCancelWindow(false)}
             >
               No
             </button>
+          </div>
+        )}
+        {status === "pending" && cancelWindow && error && (
+          <div className="p-2 m-2 bg-red-500 text-white rounded-md">
+            <p>Oops an error occured; please try again</p>
           </div>
         )}
       </div>

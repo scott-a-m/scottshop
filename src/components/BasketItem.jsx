@@ -38,7 +38,7 @@ const BasketItem = ({
             ></img>
           </Link>
           <div className="grid grid-rows-2 sm:flex sm:flex-col justify-evenly items-center sm:justify-evenly">
-            <div className="flex sm:flex-col items-center justify-between">
+            <div className="grid grid-cols-3 sm:flex sm:flex-col items-center justify-between">
               <p className="capitalize font-heading text-xl">{name}</p>
               <div className="flex items-center">
                 <button

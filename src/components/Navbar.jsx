@@ -69,7 +69,7 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            <button className="mr-6 bg-green-100 p-1 rounded-md font-heading text-xl capitalize">
+            <button className="mr-6 transition-all duration-500 bg-green-50 p-1 rounded-md font-heading text-xl capitalize hover:bg-green-500 hover:text-white">
               <Link to="/login">login</Link>
             </button>
           )}

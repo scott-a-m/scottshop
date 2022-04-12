@@ -17,7 +17,7 @@ const CALCULATE_TOTAL = "CALCULATE_TOTAL";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const CLEAR_BASKET = "CLEAR BASKET";
 
-// general context actions
+// user context actions
 
 const GET_USER_START = "GET_USER_START";
 const GET_USER_END = "GET_USER_END";
