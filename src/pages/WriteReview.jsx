@@ -11,6 +11,7 @@ const WriteReview = () => {
     single_review_loading,
     single_review_error,
     single_review_success,
+    getUserReviews,
   } = useUserContext();
 
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const WriteReview = () => {
       navigate("/user/account");
     }
     if (single_review_success) {
+      getUserReviews();
       navigate("/user/account");
     }
 

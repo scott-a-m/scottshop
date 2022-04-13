@@ -36,13 +36,6 @@ const AccountPortal = () => {
     setSort(e.target.value);
   };
 
-  useEffect(() => {
-    getUserOrders();
-    getUserReviews();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   if (loading) return <Loading />;
 
   return (
@@ -99,7 +92,8 @@ const AccountPortal = () => {
               </select>
             </form>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {user_orders &&
+              {user_orders.filter((order) => order.status === sort).length >
+                1 &&
                 user_orders
                   .filter((order) => order.status === sort)
                   .sort((a, b) => {
@@ -116,12 +110,19 @@ const AccountPortal = () => {
                     ></OrderItem>
                   ))}
             </div>
+            {user_orders.filter((order) => order.status === sort).length <
+              1 && (
+              <p className="text-center mt-2">
+                You currently have no <span className="italic">{sort}</span>{" "}
+                orders
+              </p>
+            )}
           </div>
         )}
         {showReviews && (
           <div className="mt-28">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {user_reviews &&
+              {user_reviews.length > 0 &&
                 user_reviews
                   .sort((a, b) => {
                     a.updatedAt = getTime(a.updatedAt);
@@ -136,6 +137,9 @@ const AccountPortal = () => {
                     ></ReviewItem>
                   ))}
             </div>
+            {user_reviews.length < 1 && (
+              <p className="text-center mt-2">You currently have no reviews</p>
+            )}
           </div>
         )}
         {showSettings && <Settings />}

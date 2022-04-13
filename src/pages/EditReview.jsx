@@ -13,6 +13,7 @@ const EditReview = () => {
     reviews_loading,
     reviews_error,
     user_reviews,
+    getUserReviews,
   } = useUserContext();
 
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ const EditReview = () => {
       navigate("/user/account");
     }
     if (updateSuccess) {
+      getUserReviews();
       navigate("/user/account");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

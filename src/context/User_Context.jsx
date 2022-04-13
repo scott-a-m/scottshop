@@ -147,6 +147,13 @@ const UserProvider = ({ children }) => {
     getUser();
   }, []);
 
+  useEffect(() => {
+    if (state.user) {
+      getUserOrders();
+      getUserReviews();
+    }
+  }, [state.user]);
+
   return (
     <UserContext.Provider
       value={{
@@ -155,14 +162,14 @@ const UserProvider = ({ children }) => {
         getUser,
         polishName,
         toggleSidebar,
-        getUserOrders,
-        getUserReviews,
         setGoToCheckout,
         initiateUserReview,
         createUserReview,
         userLogout,
         storeOrderSecret,
         removeOrderSecret,
+        getUserOrders,
+        getUserReviews,
       }}
     >
       {children}
