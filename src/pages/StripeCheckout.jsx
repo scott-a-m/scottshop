@@ -18,7 +18,8 @@ const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC);
 
 const CheckoutForm = () => {
   const { basket, deliveryFee, clearBasket } = useStoreContext();
-  const { user, single_order_secret, removeOrderSecret } = useUserContext();
+  const { user, single_order_secret, removeOrderSecret, getUserOrders } =
+    useUserContext();
   const navigate = useNavigate();
 
   const [succeeded, setSucceeded] = useState(false);
@@ -104,6 +105,7 @@ const CheckoutForm = () => {
           paymentIntentId: payload.paymentIntent.id,
         });
         setError(null);
+        getUserOrders();
       } catch (error) {
         setError(
           "Payment was successful but an error occured in our order system; it will be rectified shortly."

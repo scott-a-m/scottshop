@@ -39,8 +39,8 @@ const ReviewItem = ({
   };
 
   return (
-    <div className="relative text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[450px] overflow-scroll border-[1px] border-green-200">
-      <div>
+    <div className="text-center shadow-md rounded flex flex-col justify-between m-5 self-start h-[500px] overflow-scroll border-[1px] border-green-200">
+      <div className="mb-5">
         <div className="flex justify-between px-5 items-center">
           <div className="flex items-center">
             <h1 className="p-3 text-green-500 text-2xl font-bold font-heading">
@@ -62,65 +62,67 @@ const ReviewItem = ({
         <h1 className="py-2">{comment}</h1>
         <div></div>
       </div>
-      <div className="flex justify-center py-4 mb-8">
+      <div className="flex justify-center py-4">
         <img
           className="w-[120px] h-[160px] rounded-md"
           src={image}
           alt={product.name}
         ></img>
       </div>
-      <div className="absolute bottom-8 w-full">
-        {!cancelWindow && (
-          <div className="flex justify-between">
-            <button
-              className="btn-standard !w-[80px]"
-              onClick={() => {
-                initiateUserReview(
-                  product.name,
-                  product._id,
-                  color,
-                  size,
-                  image
-                );
-                navigate(`/user/account/review/${product._id}`);
-              }}
-            >
-              Edit
-            </button>
-            <button
-              className="btn-cancel !w-[80px]"
-              onClick={() => setCancelWindow(true)}
-            >
-              Delete
-            </button>
-          </div>
-        )}
-        {cancelWindow && !error && (
-          <div className="flex justify-between items-center bg-red-500 rounded-md">
-            <button
-              className="bg-black text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-white hover:text-black !w-[80px]"
-              onClick={() => deleteReview(product._id)}
-            >
-              Yes
-            </button>
-            <h2 className="text-white">Delete Review?</h2>
-            <button
-              className="btn-standard !w-[80px]"
-              onClick={() => setCancelWindow(false)}
-            >
-              No
-            </button>
-          </div>
-        )}
-        {cancelWindow && error && (
-          <div className="p-2 m-2 bg-red-500 text-white rounded-md">
-            <p>Oops an error occured; please try again</p>
-          </div>
-        )}
-      </div>
-      <div className="flex justify-between p-2 text-sm">
-        <p>buyer: {user.name}</p>
-        <p>{makeDate(updatedAt)}</p>
+      <div>
+        <div>
+          {!cancelWindow && (
+            <div className="flex justify-between">
+              <button
+                className="btn-standard !w-[80px]"
+                onClick={() => {
+                  initiateUserReview(
+                    product.name,
+                    product._id,
+                    color,
+                    size,
+                    image
+                  );
+                  navigate(`/user/account/review/${product._id}`);
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className="btn-cancel !w-[80px]"
+                onClick={() => setCancelWindow(true)}
+              >
+                Delete
+              </button>
+            </div>
+          )}
+          {cancelWindow && !error && (
+            <div className="flex justify-between items-center bg-red-500 rounded-md">
+              <button
+                className="bg-black text-white rounded-md p-2 m-2 transition-all duration-500 hover:bg-white hover:text-black !w-[80px]"
+                onClick={() => deleteReview(product._id)}
+              >
+                Yes
+              </button>
+              <h2 className="text-white">Delete Review?</h2>
+              <button
+                className="btn-standard !w-[80px]"
+                onClick={() => setCancelWindow(false)}
+              >
+                No
+              </button>
+            </div>
+          )}
+          {cancelWindow && error && (
+            <div className="p-2 m-2 bg-red-500 text-white rounded-md">
+              <p>Oops an error occured; please try again</p>
+            </div>
+          )}
+        </div>
+        <div className="flex justify-between p-2 text-sm">
+          <p>buyer: {user.name}</p>
+          <p>{makeDate(updatedAt)}</p>
+        </div>
       </div>
     </div>
   );

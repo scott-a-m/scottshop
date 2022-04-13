@@ -5,10 +5,12 @@ import Loading from "../components/Loading";
 import { useStoreContext } from "../context/Store_Context";
 
 const ProtectedRoute = ({ children }) => {
-  const { user_loading, user_error, user } = useUserContext();
+  const { user_loading, user_error, user, orders_loading, reviews_loading } =
+    useUserContext();
   const { products_loading } = useStoreContext();
 
-  if (user_loading || products_loading) return <Loading />;
+  if (user_loading || products_loading || orders_loading || reviews_loading)
+    return <Loading />;
 
   if (user_error) return <Navigate to="/" />;
 
