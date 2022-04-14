@@ -135,7 +135,7 @@ const StoreProvider = ({ children }) => {
   }, [state.basket]);
 
   useEffect(() => {
-    getProducts("/api/v1/products");
+    getProducts("https://scott-shop-server.herokuapp.com/api/v1/products");
   }, []);
 
   return (
