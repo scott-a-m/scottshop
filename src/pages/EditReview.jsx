@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/User_Context";
-import ReviewStars from "../components/ReviewStars";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import NotFound from "./NotFound";
 import axios from "axios";
+import { BsStarFill, BsStar } from "react-icons/bs";
 
 const EditReview = () => {
   const {
@@ -24,13 +24,16 @@ const EditReview = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [rating, setRating] = useState(0);
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
+
     setReviewData((data) => {
       return { ...data, [name]: value };
     });
+    console.log(reviewData);
   };
 
   const handleSubmit = async (e) => {
@@ -55,6 +58,7 @@ const EditReview = () => {
       const singleReview = user_reviews.filter(
         (review) => review.product._id === id
       );
+      setRating(singleReview[0].rating);
       setReviewData({
         title: singleReview[0].title,
         comment: singleReview[0].comment,
@@ -64,6 +68,12 @@ const EditReview = () => {
       setLoading(false);
     }
   }, [user_reviews, id]);
+
+  useEffect(() => {
+    setReviewData((data) => {
+      return { ...data, rating };
+    });
+  }, [rating]);
 
   useEffect(() => {
     if (!name) {
@@ -111,7 +121,7 @@ const EditReview = () => {
           </div>
           <div>
             <label htmlFor="title" className="block pt-2 font-heading">
-              Title
+              Review Title
             </label>
             <input
               type="text"
@@ -122,7 +132,7 @@ const EditReview = () => {
               value={reviewData.title}
             />
             <label htmlFor="comment" className="block pt-2 font-heading">
-              Comments
+              Review
             </label>
             <textarea
               type="text"
@@ -132,25 +142,44 @@ const EditReview = () => {
               className="w-full min-h-[100px] max-h-[100px] rounded-md py-1"
               value={reviewData.comment}
             />
-            <div className="flex justify-center items-center mt-3">
-              <label htmlFor="rating" className="block px-3 font-heading">
-                Rating
-              </label>
-              <select
-                name="rating"
-                id="rating"
-                className="w-[50px] px-2"
-                onChange={handleChange}
-                value={reviewData.rating}
-              >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-              </select>
-              <div className="px-2">
-                <ReviewStars stars={reviewData.rating} />
+            <div className="flex justify-center gap-2 items-center">
+              <h3 className="font-heading">Rating:</h3>
+              <div className="flex text-2xl">
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(1)}
+                >
+                  <BsStarFill />
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(2)}
+                >
+                  {rating >= 2 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(3)}
+                >
+                  {rating >= 3 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(4)}
+                >
+                  {rating >= 4 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(5)}
+                >
+                  {rating === 5 ? <BsStarFill /> : <BsStar />}
+                </button>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useUserContext } from "../context/User_Context";
-import ReviewStars from "../components/ReviewStars";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import { BsStarFill, BsStar } from "react-icons/bs";
 
 const WriteReview = () => {
   const {
@@ -22,6 +22,7 @@ const WriteReview = () => {
     rating: 5,
   });
   const [error, setError] = useState(false);
+  const [rating, setRating] = useState(5);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,7 +52,14 @@ const WriteReview = () => {
         setError(false);
       }, 4000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [single_review_success, single_review_error]);
+
+  useEffect(() => {
+    setReviewData((data) => {
+      return { ...data, rating };
+    });
+  }, [rating]);
 
   if (single_review_loading) return <Loading />;
 
@@ -84,18 +92,19 @@ const WriteReview = () => {
           </div>
           <div>
             <label htmlFor="title" className="block pt-2 font-heading">
-              Title
+              Review Title
             </label>
             <input
               type="text"
               name="title"
               id="title"
+              placeholder="E.g. Great design and fit"
               className="w-full py-1 rounded-md"
               onChange={handleChange}
               value={reviewData.title}
             />
             <label htmlFor="comment" className="block pt-2 font-heading">
-              Comments
+              Review
             </label>
             <textarea
               type="text"
@@ -105,25 +114,44 @@ const WriteReview = () => {
               className="w-full min-h-[100px] max-h-[100px] rounded-md py-1"
               value={reviewData.comment}
             />
-            <div className="flex justify-center items-center mt-3">
-              <label htmlFor="rating" className="block px-3 font-heading">
-                Rating
-              </label>
-              <select
-                name="rating"
-                id="rating"
-                className="w-[50px] px-2"
-                onChange={handleChange}
-                value={reviewData.rating}
-              >
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-              </select>
-              <div className="px-2">
-                <ReviewStars stars={reviewData.rating} />
+            <div className="flex justify-center gap-2 items-center">
+              <h3 className="font-heading">Rating:</h3>
+              <div className="flex text-2xl">
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(1)}
+                >
+                  <BsStarFill />
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(2)}
+                >
+                  {rating >= 2 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(3)}
+                >
+                  {rating >= 3 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(4)}
+                >
+                  {rating >= 4 ? <BsStarFill /> : <BsStar />}
+                </button>
+                <button
+                  type="button"
+                  className="text-yellow-500 transition-all duration-500 hover:text-yellow-300"
+                  onClick={() => setRating(5)}
+                >
+                  {rating === 5 ? <BsStarFill /> : <BsStar />}
+                </button>
               </div>
             </div>
           </div>

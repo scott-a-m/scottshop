@@ -5,7 +5,7 @@ import { BsFillBasketFill } from "react-icons/bs";
 import { useUserContext } from "../context/User_Context";
 import { useStoreContext } from "../context/Store_Context";
 import axios from "axios";
-import { RiAccountCircleFill } from "react-icons/ri";
+import { MdAccountBox } from "react-icons/md";
 
 const Navbar = () => {
   const { user, userLogout } = useUserContext();
@@ -55,7 +55,7 @@ const Navbar = () => {
                 <Link to="/user/account">
                   <div className="flex items-center">
                     <p className="mr-1">Account</p>
-                    <RiAccountCircleFill />
+                    <MdAccountBox />
                   </div>
                 </Link>
               </button>

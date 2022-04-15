@@ -4,7 +4,7 @@ import ProductsList from "../components/ProductsList";
 import { useStoreContext } from "../context/Store_Context";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
-import { ImFilter } from "react-icons/im";
+import { GoSettings } from "react-icons/go";
 
 const Store = () => {
   const { products_loading, products_error } = useStoreContext();
@@ -25,7 +25,7 @@ const Store = () => {
             }`}
             onClick={() => setFilters(!filters)}
           >
-            <ImFilter className="text-2xl" />
+            <GoSettings className="text-2xl rotate-90" />
           </button>
           <div
             className={`md:block md:w-full md:opacity-100 w-0 opacity-0 overflow-hidden rounded-br-lg md:rounded-none fixed top-[52px] md:sticky md:top-20  z-10 transition-all duration-500 ${
