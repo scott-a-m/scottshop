@@ -76,19 +76,20 @@ const Home = () => {
           </div>
         </div>
         <div className="flex justify-center items-center">
-          <div className="bg-green-300  m-0 w-[260px] xs:w-[280px] sm:w-[100px] lg:w-[150px] rounded-md p-2 xs:m-0 xs:p-3 sm:p-4 sm:ml-5 mr-2 sm:mr-5 lg:mr-20 flex gap-4 sm:flex sm:flex-col sm:justify-center">
+          <div className="bg-green-300  m-0 w-[280px] sm:w-[100px] lg:w-[150px] rounded-md p-3 sm:p-4 sm:ml-5 sm:mr-5 lg:mr-20 flex gap-4 sm:flex sm:flex-col sm:justify-center">
             {categories.map((item, index) => {
               return (
                 <button
+                key={index}
                   name="type"
-                  className="text-white flex flex-col items-center transition-all duration-500 hover:text-black cursor-pointer font-heading xs:text-xl lg:text-2xl"
+                  className="text-white flex flex-col items-center transition-all duration-500 hover:text-black cursor-pointer font-heading text-xl lg:text-2xl"
                   onClick={() => {
                     updateFilters(item.name, "type");
                     navigate("/store");
                   }}
                 >
                   {item.name}
-                  <p className="text-center text-4xl xs:text-5xl lg:text-6xl">
+                  <p className="text-center text-5xl lg:text-6xl">
                     {item.icon}
                   </p>
                 </button>
