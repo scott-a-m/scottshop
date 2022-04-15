@@ -9,7 +9,7 @@ import { ImFilter } from "react-icons/im";
 const Store = () => {
   const { products_loading, products_error } = useStoreContext();
 
-  const [filters, setFilters] = useState(true);
+  const [filters, setFilters] = useState(false);
 
   if (products_loading) return <Loading />;
 
