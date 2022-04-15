@@ -3,7 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import { sidebarLinks } from "../data/nav-links";
 import { useUserContext } from "../context/User_Context";
 import { Link } from "react-router-dom";
-import { RiAccountCircleFill } from "react-icons/ri";
+import { MdAccountBox } from "react-icons/md";
 import { BsFillBasketFill } from "react-icons/bs";
 import { useStoreContext } from "../context/Store_Context";
 import axios from "axios";
@@ -33,12 +33,39 @@ const Sidebar = () => {
     >
       <div className="bg-green-200 flex items-center justify-between p-2">
         <h1 className="text-3xl font-heading">Scott Shop</h1>
-        <button
-          className="text-white text-2xl"
-          onClick={() => toggleSidebar("close")}
-        >
-          <FaTimes />
-        </button>
+        <div className="flex items-center">
+          {user ? (
+            <button
+              onClick={toggleSidebar}
+              className="transition-all duration-500 px-1 mr-5 rounded-md font-heading text-lg capitalize hover:text-green-500"
+            >
+              <Link to="/user/account">
+                <MdAccountBox className="text-4xl" />
+              </Link>
+            </button>
+          ) : (
+            <button className="transition-all duration-500 bg-green-50 p-1 mr-6 rounded-md font-heading text-xl capitalize hover:bg-green-500 hover:text-white">
+              <Link to="/login" onClick={toggleSidebar}>
+                login
+              </Link>
+            </button>
+          )}
+          <div className="relative w-10">
+            <Link to="/store/basket" onClick={toggleSidebar}>
+              <BsFillBasketFill className="text-3xl" />
+              <button className=" text-xl font-heading absolute w-7 h-7 text-white -top-2 -left-4 bg-green-500/70 rounded-full">
+                {basket_items}
+              </button>
+            </Link>
+          </div>
+
+          <button
+            className="text-white text-2xl"
+            onClick={() => toggleSidebar("close")}
+          >
+            <FaTimes />
+          </button>
+        </div>
       </div>
       <ul
         className={`transition-all duration-500 delay-200 ease-in-out -translate-x-full px-4 py-4 text-lg  ${
@@ -64,51 +91,19 @@ const Sidebar = () => {
           );
         })}
       </ul>
-      <div className="flex items-center justify-between p-3 bg-green-200">
-        {user ? (
-          <div className="w-10">
-            <button
-              onClick={toggleSidebar}
-              className="transition-all duration-500 mr-6 bg-green-100 px-2 rounded-md font-heading text-lg capitalize hover:bg-green-500 hover:text-white"
-            >
-              <Link to="/user/account">
-                <div className="flex items-center">
-                  <p className="mr-1">Account</p>
-                  <RiAccountCircleFill />
-                </div>
-              </Link>
-            </button>
-          </div>
-        ) : (
-          <div className="w-10">
-            <button className="transition-all duration-500 bg-green-50 p-1 rounded-md font-heading text-xl capitalize hover:bg-green-500 hover:text-white">
-              <Link to="/login" onClick={toggleSidebar}>
-                login
-              </Link>
-            </button>
-          </div>
-        )}
-        {user && (
+      {user && (
+        <div className="flex justify-center p-3">
           <div>
             <button
+              className="transition-all duration-500 bg-white p-1 rounded-md font-heading text-xl capitalize hover:bg-green-500 hover:text-white"
               disabled={logoutBtn}
               onClick={logoutUser}
-              className="transition-all duration-500 text-sm rounded-md capitalize  hover:text-green-500"
             >
               logout
             </button>
           </div>
-        )}
-
-        <div className="relative w-10">
-          <Link to="/store/basket" onClick={toggleSidebar}>
-            <BsFillBasketFill className="text-3xl" />
-            <button className=" text-xl font-heading absolute w-7 h-7 text-white -top-2 -left-4 bg-green-500/70 rounded-full">
-              {basket_items}
-            </button>
-          </Link>
         </div>
-      </div>
+      )}
     </aside>
   );
 };
