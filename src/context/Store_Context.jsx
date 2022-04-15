@@ -141,7 +141,7 @@ const StoreProvider = ({ children }) => {
   }, [state.basket]);
 
   useEffect(() => {
-    getProducts("http://localhost:5000/api/v1/products");
+    getProducts("/api/v1/products");
   }, []);
 
   return (
