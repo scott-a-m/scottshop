@@ -8,6 +8,9 @@ import { RiCustomerServiceFill } from "react-icons/ri";
 import { GiGreenhouse } from "react-icons/gi";
 import { BsLightningFill } from "react-icons/bs";
 import { ImCool2 } from "react-icons/im";
+import { FaTshirt } from "react-icons/fa";
+import { GiTrousers, GiShirt } from "react-icons/gi";
+import { GiShorts } from "react-icons/gi";
 
 const links = [
   {
@@ -98,4 +101,23 @@ const mission = [
   },
 ];
 
-export { social, links, sidebarLinks, mission };
+const categories = [
+  {
+    name: "t-shirts",
+    icon: <FaTshirt />,
+  },
+  {
+    name: "jumpers",
+    icon: <GiShirt />,
+  },
+  {
+    name: "jeans",
+    icon: <GiTrousers />,
+  },
+  {
+    name: "shorts",
+    icon: <GiShorts />,
+  },
+];
+
+export { social, links, sidebarLinks, mission, categories };

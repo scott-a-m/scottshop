@@ -86,20 +86,26 @@ const StoreProvider = ({ children }) => {
     dispatch({ type: CLEAR_FILTERS });
   };
 
-  const updateFilters = (e) => {
-    const { name } = e.target;
+  const updateFilters = (e, type = false) => {
     let value;
+    let name;
 
-    if (name === "price") {
-      value = Number(e.target.value);
-    }
+    if (!type) {
+      name = e.target.name;
+      if (name === "price") {
+        value = Number(e.target.value);
+      }
 
-    if (name === "type" || name === "category" || name === "size") {
-      value = e.target.textContent;
-    }
+      if (name === "type" || name === "category" || name === "size") {
+        value = e.target.textContent;
+      }
 
-    if (name === "color") {
-      value = e.target.dataset.color;
+      if (name === "color") {
+        value = e.target.dataset.color;
+      }
+    } else {
+      name = type;
+      value = e;
     }
 
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
@@ -135,7 +141,7 @@ const StoreProvider = ({ children }) => {
   }, [state.basket]);
 
   useEffect(() => {
-    getProducts("/api/v1/products");
+    getProducts("http://localhost:5000/api/v1/products");
   }, []);
 
   return (
