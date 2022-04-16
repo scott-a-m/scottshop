@@ -32,7 +32,7 @@ const BasketItem = ({
         <div className="grid grid-cols-[90px_1fr] sm:grid-cols-[120px_80px] gap-4">
           <Link to={`/store/${productId}`}>
             <img
-              className="w-full sm:h-[160px] h-[130px] rounded-md"
+              className="w-full sm:h-[160px] h-[130px] rounded-md object-cover"
               src={image}
               alt={name}
             ></img>

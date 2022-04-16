@@ -80,7 +80,7 @@ const Home = () => {
             {categories.map((item, index) => {
               return (
                 <button
-                key={index}
+                  key={index}
                   name="type"
                   className="text-white flex flex-col items-center transition-all duration-500 hover:text-black cursor-pointer font-heading text-xl lg:text-2xl"
                   onClick={() => {
