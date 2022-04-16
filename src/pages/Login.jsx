@@ -80,15 +80,13 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      return navigate("/");
+      if (go_to_checkout) {
+        setGoToCheckout(false);
+        return navigate("/store/basket");
+      }
     }
-  }, []);
-
-  useEffect(() => {
-    if (user && go_to_checkout) {
-      setGoToCheckout(false);
-      navigate("/store/basket");
-    }
+    return navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   useEffect(() => {
