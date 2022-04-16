@@ -133,7 +133,7 @@ const OrderItem = ({
             <div key={index} className="grid grid-rows-[1fr_1fr_auto]">
               <div className="flex justify-center">
                 <img
-                  className="w-[120px] h-[160px] rounded-md"
+                  className="w-[120px] h-[160px] rounded-md object-cover"
                   src={image}
                   alt={name}
                 ></img>

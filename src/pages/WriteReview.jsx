@@ -74,7 +74,7 @@ const WriteReview = () => {
           <div>
             <div className="flex justify-center py-4">
               <img
-                className="w-[120px] h-[160px] rounded-md"
+                className="w-[120px] h-[160px] rounded-md object-cover"
                 src={image}
                 alt={name}
               ></img>
