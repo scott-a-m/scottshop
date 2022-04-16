@@ -46,7 +46,6 @@ const Login = () => {
         email: "",
         password: "",
       }));
-      showMessage(true, "success-msg", "Login successful. Loading...");
       getUser();
     } catch (err) {
       setbtnStatus((btnData) => ({
