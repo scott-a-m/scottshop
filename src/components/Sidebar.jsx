@@ -10,7 +10,7 @@ import axios from "axios";
 
 const Sidebar = () => {
   const { is_sidebar_open, toggleSidebar, user, userLogout } = useUserContext();
-  const { basket_items, clearBasket } = useStoreContext();
+  const { basket_items, clearBasket, setReloadProducts } = useStoreContext();
   const [logoutBtn, setLogoutBtn] = useState(false);
 
   const logoutUser = async () => {
@@ -19,6 +19,7 @@ const Sidebar = () => {
       await axios.delete("/api/v1/auth/logout");
       userLogout();
       clearBasket();
+      setReloadProducts(false);
       setLogoutBtn(false);
     } catch (error) {
       setLogoutBtn(false);

@@ -169,6 +169,7 @@ const StoreProvider = ({ children }) => {
         removeItem,
         getReviews,
         clearBasket,
+        setReloadProducts,
       }}
     >
       {children}
