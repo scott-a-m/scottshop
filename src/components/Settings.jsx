@@ -20,7 +20,6 @@ const Settings = () => {
   const [btnStatus, setbtnStatus] = useState({
     text: "Submit",
     disabled: false,
-    opacity: 1,
   });
 
   const updateName = async (e) => {
@@ -28,7 +27,6 @@ const Settings = () => {
     setbtnStatus({
       text: "loading",
       disabled: true,
-      opacity: 0.5,
     });
 
     if (newName.length < 3) {
@@ -40,7 +38,6 @@ const Settings = () => {
       setbtnStatus({
         text: "save",
         disabled: false,
-        opacity: 0.5,
       });
       return;
     }
@@ -49,17 +46,20 @@ const Settings = () => {
       await axios.patch(`/api/v1/users/updateUser`, { name: newName });
       setNewName("");
       showMessage(true, "success-msg", "username updated.");
-      getUser();
+      setbtnStatus({
+        text: "save",
+        disabled: false,
+      });
       closeWindow("name");
+      getUser();
     } catch (err) {
       showMessage(true, "error-msg", "Error: Please try again");
       setNewName("");
+      setbtnStatus({
+        text: "save",
+        disabled: false,
+      });
     }
-    setbtnStatus({
-      text: "save",
-      disabled: false,
-      opacity: 1,
-    });
   };
 
   const updatePassword = async (e) => {
@@ -68,7 +68,6 @@ const Settings = () => {
     setbtnStatus({
       text: "saving",
       disabled: true,
-      opacity: 0.5,
     });
 
     if (passwordData.old.length < 6 || passwordData.new.length < 6) {
@@ -80,7 +79,6 @@ const Settings = () => {
       setbtnStatus({
         text: "save",
         disabled: false,
-        opacity: 1,
       });
       return;
     }
@@ -96,12 +94,15 @@ const Settings = () => {
       });
       showMessage(true, "success-msg", "password updated.");
       closeWindow("password");
+      setbtnStatus({
+        text: "Submit",
+        disabled: false,
+      });
       getUser();
     } catch (err) {
       setbtnStatus({
         text: "Submit",
         disabled: false,
-        opacity: 1,
       });
       setPasswordData({
         old: "",
@@ -111,12 +112,11 @@ const Settings = () => {
         return showMessage(true, "error-msg", err.response.data.msg);
 
       showMessage(true, "error-msg", "Error: Please try again");
+      setbtnStatus({
+        text: "Submit",
+        disabled: false,
+      });
     }
-    setbtnStatus({
-      text: "Submit",
-      disabled: false,
-      opacity: 1,
-    });
   };
 
   const handleChange = (e) => {
@@ -198,16 +198,17 @@ const Settings = () => {
                 onChangeFunc={handleChange}
               />
               <br />
-              <div className="btn-task">
+              <div className="flex justify-between">
                 <button
-                  className="btn text-sm sm:text-base"
+                  className={`${
+                    btnStatus.disabled ? "btn-disabled" : "btn-standard"
+                  } text-sm sm:text-base !w-[80px]`}
                   disabled={btnStatus.disabled}
-                  style={{ opacity: btnStatus.opacity }}
                 >
                   {btnStatus.text}
                 </button>
                 <button
-                  className="btn text-sm sm:text-base"
+                  className="btn-cancel text-sm sm:text-base !w-[80px]"
                   onClick={() => closeWindow("name")}
                   type="submit"
                 >
@@ -233,17 +234,18 @@ const Settings = () => {
                 onChangeFunc={handleChange}
               />
               <br />
-              <div className="btn-task">
+              <div className="flex justify-between">
                 <button
-                  className="btn text-sm sm:text-base"
+                  className={`${
+                    btnStatus.disabled ? "btn-disabled" : "btn-standard"
+                  } text-sm sm:text-base !w-[80px]`}
                   disabled={btnStatus.disabled}
                   type="submit"
-                  style={{ opacity: btnStatus.opacity }}
                 >
                   {btnStatus.text}
                 </button>
                 <button
-                  className="btn text-sm sm:text-base"
+                  className="btn-cancel text-sm sm:text-base !w-[80px]"
                   onClick={() => closeWindow("pass")}
                 >
                   Cancel

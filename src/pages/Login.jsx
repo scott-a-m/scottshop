@@ -25,7 +25,6 @@ const Login = () => {
   const [btnStatus, setbtnStatus] = useState({
     text: "Login",
     disabled: false,
-    opacity: 1,
   });
 
   const navigate = useNavigate();
@@ -36,7 +35,6 @@ const Login = () => {
     setbtnStatus((btnData) => ({
       text: "loading",
       disabled: true,
-      opacity: 0.5,
     }));
 
     try {
@@ -51,7 +49,6 @@ const Login = () => {
       setbtnStatus((btnData) => ({
         text: "login",
         disabled: false,
-        opacity: 1,
       }));
       setLoginData(() => ({
         name: "",
@@ -81,7 +78,7 @@ const Login = () => {
     if (user) {
       if (go_to_checkout) {
         setGoToCheckout(false);
-        return navigate("/store/basket");
+        return navigate("/store/checkout");
       }
       return navigate("/");
     }
@@ -117,7 +114,9 @@ const Login = () => {
               onChangeFunc={handleChange}
             />
             <button
-              className="btn-standard !w-[100px] !my-4 sm:!my-6"
+              className={`!w-[100px] !my-4 sm:!my-6 ${
+                btnStatus.disabled ? "btn-disabled" : "btn-standard"
+              }`}
               disabled={btnStatus.disabled}
               type="submit"
             >

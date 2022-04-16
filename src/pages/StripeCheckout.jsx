@@ -49,6 +49,7 @@ const CheckoutForm = () => {
       setClientSecret(data.clientSecret);
       setTotal(data.order.total);
       setOrderId(data.order._id);
+      getUserOrders();
       clearBasket();
       setLoading(false);
     } catch (error) {
