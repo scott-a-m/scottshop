@@ -84,8 +84,8 @@ const Login = () => {
         setGoToCheckout(false);
         return navigate("/store/basket");
       }
+      return navigate("/");
     }
-    return navigate("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
