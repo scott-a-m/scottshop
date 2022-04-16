@@ -80,14 +80,16 @@ const Login = () => {
 
   useEffect(() => {
     if (user) {
-      if (go_to_checkout) {
-        setGoToCheckout(false);
-        return navigate("/store/checkout");
-      }
       return navigate("/");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, user]);
+  }, []);
+
+  useEffect(() => {
+    if (user && go_to_checkout) {
+      setGoToCheckout(false);
+      navigate("/store/basket");
+    }
+  }, [user]);
 
   useEffect(() => {
     showMessage();
@@ -101,7 +103,7 @@ const Login = () => {
           {message.show && <Message />}
           {go_to_checkout && (
             <p className="py-2 mb-2 bg-green-500 text-white rounded-md">
-              Please login to proceed to checkout
+              Please first login before checking out
             </p>
           )}
           <form onSubmit={handleLogin}>
