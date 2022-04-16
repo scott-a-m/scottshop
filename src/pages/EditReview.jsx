@@ -33,7 +33,6 @@ const EditReview = () => {
     setReviewData((data) => {
       return { ...data, [name]: value };
     });
-    console.log(reviewData);
   };
 
   const handleSubmit = async (e) => {

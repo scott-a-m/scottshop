@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import {
   GET_PRODUCTS_START,
@@ -20,6 +20,7 @@ import {
 } from "../actions";
 
 import storeReducer from "../reducers/store_reducer";
+import { useUserContext } from "./User_Context";
 
 const getLocalStorage = () => {
   let basket = localStorage.getItem("basket");
@@ -57,6 +58,8 @@ const StoreContext = React.createContext();
 
 const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(storeReducer, initialState);
+  const { user_reviews, user } = useUserContext();
+  const [reloadProducts, setReloadProducts] = useState(false);
 
   const getProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_START });
@@ -143,6 +146,15 @@ const StoreProvider = ({ children }) => {
   useEffect(() => {
     getProducts("/api/v1/products");
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    if (!reloadProducts) {
+      setReloadProducts(true);
+      return;
+    }
+    getProducts("/api/v1/products");
+  }, [user_reviews]);
 
   return (
     <StoreContext.Provider
