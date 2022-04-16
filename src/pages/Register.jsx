@@ -19,7 +19,6 @@ const Register = () => {
   const [btnStatus, setbtnStatus] = useState({
     text: "Register",
     disabled: false,
-    opacity: 1,
   });
 
   const navigate = useNavigate();
@@ -30,7 +29,6 @@ const Register = () => {
     setbtnStatus({
       text: "Processing",
       disabled: true,
-      opacity: 0.5,
     });
 
     if (registerData.name.length < 3) {
@@ -42,7 +40,6 @@ const Register = () => {
       setbtnStatus({
         text: "Register",
         disabled: false,
-        opacity: 1,
       });
       setRegisterData(() => ({
         name: "",
@@ -61,7 +58,6 @@ const Register = () => {
       setbtnStatus({
         text: "Register",
         disabled: false,
-        opacity: 1,
       });
       setRegisterData(() => ({
         name: "",
@@ -84,13 +80,11 @@ const Register = () => {
         password: "",
       }));
       setbtnStatus((btnData) => ({
-        opacity: 0.5,
         text: "Submitted",
         disabled: true,
       }));
     } catch (err) {
       setbtnStatus((btnData) => ({
-        opacity: 1,
         text: "Register",
         disabled: false,
       }));
@@ -153,9 +147,10 @@ const Register = () => {
               onChangeFunc={handleChange}
             />
             <button
-              className="btn-standard !w-[100px] !my-4 sm:!my-6"
+              className={`!w-[100px] !my-4 sm:!my-6 ${
+                btnStatus.disabled ? "btn-disabled" : "btn-standard"
+              }`}
               disabled={btnStatus.disabled}
-              style={{ opacity: btnStatus.opacity }}
             >
               {btnStatus.text}
             </button>
