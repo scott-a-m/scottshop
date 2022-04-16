@@ -13,6 +13,7 @@ import axios from "axios";
 import Error from "../components/Error";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import { ImSpinner3 } from "react-icons/im";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC);
 
@@ -134,7 +135,10 @@ const CheckoutForm = () => {
               <span className="capitalize font-bold">{user && user.name}</span>.
             </h4>
             <h4>Your payment was successful</h4>
-            <h4>Redirecting to your account portal...</h4>
+            <div className="flex items-center justify-center gap-1">
+              <h4>Redirecting to your account portal</h4>
+              <ImSpinner3 className="animate-spin text-xl" />
+            </div>
           </article>
         ) : (
           <article>

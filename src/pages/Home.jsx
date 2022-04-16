@@ -3,10 +3,11 @@ import { mission, categories } from "../data/nav-links";
 import Footer from "../components/Footer";
 import { useStoreContext } from "../context/Store_Context";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [index, setIndex] = useState(1);
-  const { products, updateFilters } = useStoreContext();
+  const { products, updateFilters, products_loading } = useStoreContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,6 +28,8 @@ const Home = () => {
       clearInterval(imageSlider);
     };
   }, [index]);
+
+  if (products_loading) return <Loading />;
 
   return (
     <div className="mt-20">

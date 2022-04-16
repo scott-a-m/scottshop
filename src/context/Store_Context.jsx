@@ -154,6 +154,7 @@ const StoreProvider = ({ children }) => {
       return;
     }
     getProducts("/api/v1/products");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user_reviews]);
 
   return (
