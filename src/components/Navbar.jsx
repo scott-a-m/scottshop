@@ -9,7 +9,7 @@ import { MdAccountBox } from "react-icons/md";
 
 const Navbar = () => {
   const { user, userLogout } = useUserContext();
-  const { basket_items, clearBasket } = useStoreContext();
+  const { basket_items, clearBasket, setReloadProducts } = useStoreContext();
   const [logoutBtn, setLogoutBtn] = useState(false);
 
   const logoutUser = async () => {
@@ -18,6 +18,7 @@ const Navbar = () => {
       await axios.delete("/api/v1/auth/logout");
       userLogout();
       clearBasket();
+      setReloadProducts(false);
       setLogoutBtn(false);
     } catch (error) {
       setLogoutBtn(false);
