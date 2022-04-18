@@ -8,7 +8,6 @@ import Error from "../components/Error";
 import NotFound from "./NotFound";
 import ReviewStars from "../components/ReviewStars";
 import { makeDate, getTime } from "../helpers";
-import { trueColor } from "@cloudinary/url-gen/qualifiers/colorSpace";
 
 const SingleProduct = () => {
   const {
