@@ -80,6 +80,13 @@ const store_reducer = (state, action) => {
   }
 
   if (action.type === UPDATE_FILTERS) {
+    if (action.payload.nameOne) {
+      const { nameOne, valueOne, nameTwo, valueTwo } = action.payload;
+      return {
+        ...state,
+        filters: { ...state.filters, [nameOne]: valueOne, [nameTwo]: valueTwo },
+      };
+    }
     const { value, name } = action.payload;
     return { ...state, filters: { ...state.filters, [name]: value } };
   }
@@ -148,10 +155,11 @@ const store_reducer = (state, action) => {
             newAmount = basketItem.inventory;
           }
           return { ...basketItem, amount: newAmount };
+        } else {
+          return basketItem;
         }
-        return basketItem;
       });
-      return { ...state, basket: [tempBasket] };
+      return { ...state, basket: tempBasket };
     } else {
       const newBasketItem = {
         id: id + size + color,

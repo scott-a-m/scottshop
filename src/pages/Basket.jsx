@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BsBasket3 } from "react-icons/bs";
 import { useStoreContext } from "../context/Store_Context";

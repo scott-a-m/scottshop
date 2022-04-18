@@ -106,9 +106,24 @@ const StoreProvider = ({ children }) => {
       if (name === "color") {
         value = e.target.dataset.color;
       }
-    } else {
+    } else if (type === "type") {
       name = type;
       value = e;
+    } else {
+      const nameOne = "type";
+      const valueOne = e;
+      const nameTwo = "category";
+      const valueTwo = type;
+
+      return dispatch({
+        type: UPDATE_FILTERS,
+        payload: {
+          nameOne,
+          valueOne,
+          nameTwo,
+          valueTwo,
+        },
+      });
     }
 
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
