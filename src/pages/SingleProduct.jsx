@@ -26,6 +26,7 @@ const SingleProduct = () => {
   const [amount, setAmount] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -41,9 +42,6 @@ const SingleProduct = () => {
   const checkBasket = () => {
     if (!mainColor || !mainSize) {
       setMessage("Please Select Both Color and Size");
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
       return;
     }
     addToBasket(singleProduct._id, singleProduct, mainColor, amount, mainSize);
@@ -53,13 +51,26 @@ const SingleProduct = () => {
   useEffect(() => {
     if (products.length > 0) {
       const product = products.filter((p) => p._id === id);
-      setSingleProduct(product[0]);
+      if (product.length > 0) {
+        setSingleProduct(product[0]);
+        getReviews(`/api/v1/products/${id}/reviews`);
+      }
+      setLoading(false);
     }
-    getReviews(`/api/v1/products/${id}/reviews`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, products]);
 
-  if (products_loading || reviews_loading) return <Loading />;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, products.length]);
+
+  useEffect(() => {
+    if (message) {
+      const errorMsgTimeout = setTimeout(() => {
+        setMessage("");
+      }, 3000);
+      return () => clearTimeout(errorMsgTimeout);
+    }
+  }, [message]);
+
+  if (products_loading || reviews_loading || loading) return <Loading />;
 
   if (products_error || reviews_error) return <Error />;
 

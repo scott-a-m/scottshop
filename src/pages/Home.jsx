@@ -117,7 +117,7 @@ const Home = () => {
               );
             })}
           </div>
-          <div className="relative self-start hidden lg:flex flex-col p-2 bg-green-200 rounded-md h-[632px] xxl:h-[722px] w-[336px] xl:w-[376px] shadow-lg overflow-hidden">
+          <div className="relative self-start hidden lg:flex flex-col p-2 bg-green-200 rounded-md h-[630px] xxl:h-[720px] w-[336px] xl:w-[376px] shadow-lg overflow-hidden">
             <div className="flex w-full">
               <button
                 className={`w-1/2 transition-all duration-500 py-1 bg-white hover:bg-green-500 hover:text-white rounded-tl-md ${

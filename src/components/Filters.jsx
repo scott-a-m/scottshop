@@ -40,7 +40,7 @@ const Filters = ({ setFilters }) => {
                 key={index}
                 type="button"
                 name="category"
-                className={`px-4 ${
+                className={`transition-all duration-500 hover:text-green-500 px-4 ${
                   item === category ? "text-green-500 underline" : null
                 }`}
                 onClick={updateFilters}
@@ -63,7 +63,7 @@ const Filters = ({ setFilters }) => {
                   key={index}
                   type="button"
                   name="category"
-                  className={`px-4 ${
+                  className={`transition-all duration-500 hover:text-green-500 underline px-4 ${
                     item === category ? "text-green-500 underline" : null
                   }`}
                   onClick={updateFilters}
@@ -84,7 +84,7 @@ const Filters = ({ setFilters }) => {
                   key={index}
                   type="button"
                   name="type"
-                  className={`${
+                  className={`transition-all duration-500 hover:text-green-500 ${
                     item === type ? "text-green-500 underline" : null
                   }`}
                   onClick={updateFilters}
@@ -105,7 +105,7 @@ const Filters = ({ setFilters }) => {
                   key={index}
                   type="button"
                   name="size"
-                  className={`${
+                  className={`transition-all duration-500 hover:text-green-500 ${
                     item === size ? "text-green-500 underline" : null
                   }`}
                   onClick={updateFilters}

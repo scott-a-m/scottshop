@@ -9,9 +9,9 @@ const NotFound = () => {
         <FaRoad className="text-[10rem] text-white " />
         <h1 className="text-center text-4xl font-heading text-white text-shadow-lg">
           Oops! This is a dead end. <br />
-          Take me{" "}
-          <Link className="link" to="/">
-            home
+          Back to{" "}
+          <Link className="link" to="/store">
+            Shop
           </Link>
         </h1>
       </div>
