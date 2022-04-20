@@ -25,20 +25,18 @@ const Home = () => {
 
   useEffect(() => {
     const lastIndex = products.length - 1;
-    if (index < 0) {
-      setIndex(lastIndex);
-    }
+
     if (index > lastIndex) {
       setIndex(0);
     }
   }, [index, products]);
 
   useEffect(() => {
-    let imageSlider = setInterval(() => {
+    let imageSlider = setTimeout(() => {
       setIndex(index + 1);
     }, 3000);
     return () => {
-      clearInterval(imageSlider);
+      clearTimeout(imageSlider);
     };
   }, [index]);
 
