@@ -66,7 +66,9 @@ const SingleProduct = () => {
       const errorMsgTimeout = setTimeout(() => {
         setMessage("");
       }, 3000);
-      return () => clearTimeout(errorMsgTimeout);
+      return () => {
+        clearTimeout(errorMsgTimeout);
+      };
     }
   }, [message]);
 
