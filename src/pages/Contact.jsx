@@ -17,9 +17,17 @@ const Contact = () => {
 
           <div className="mt-10 text-center text-lg lg:text-xl md:m-0 px-4">
             <p className="py-2">
-              Hi, I'm Scott Mitchell, and I built{" "}
-              <span className="italic">Scott Shop</span> as a personal coding
-              project - it's not a real shop.
+              Hi, I'm{" "}
+              <a
+                href="https://scottsdev.net"
+                target="_blank"
+                rel="noreferrer"
+                className="link"
+              >
+                Scott Mitchell
+              </a>
+              , and I built <span className="italic">Scott Shop</span> as a
+              personal coding project - it's not a real shop.
             </p>
             <p className="py-2">
               But... you can browse the cool clothes, "buy" them with the test

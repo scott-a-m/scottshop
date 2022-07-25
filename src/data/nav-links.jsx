@@ -73,7 +73,7 @@ const social = [
   {
     id: 4,
     text: "Email",
-    url: "mailto:scott_a_mitchell@163.com",
+    url: "mailto:scott@scottsdev.net",
     icon: <BiEnvelope />,
   },
 ];

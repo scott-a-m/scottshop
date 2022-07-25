@@ -1,6 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400&family=Ramaraja&family=Shadows+Into+Light&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+/* shadows-into-light-regular - latin */
+@font-face {
+    font-family: 'Shadows Into Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('../public/fonts/shadows-into-light-v15-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../public/fonts/shadows-into-light-v15-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
 
 @tailwind base;
 @tailwind components;

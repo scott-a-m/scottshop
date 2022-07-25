@@ -149,8 +149,8 @@ const SingleProduct = () => {
             </div>
             {singleProduct.inventory > 0 && (
               <div className="flex justify-center">
-                <div className="w-[240px]">
-                  <p className="text-green-500 h-5">{message}</p>
+                <div className="w-[250px]">
+                  <h5 className="text-green-500 h-5">{message}</h5>
                   <AmountButtons
                     increase={increase}
                     decrease={decrease}
