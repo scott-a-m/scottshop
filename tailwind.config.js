@@ -26,10 +26,7 @@ module.exports = {
           "linear-gradient(to right bottom, rgba(167, 190, 182, 0.85), rgba(167, 190, 182, 0.85)), url('/public/img/background.jpg')",
       },
       fontFamily: {
-        body: ["Rajdhani"],
-        logo: ["Rubik Glitch"],
         heading: ["Shadows Into Light"],
-        links: ["Amatic SC"],
       },
     },
   },
