@@ -5,7 +5,9 @@ const Footer = () => {
   return (
     <footer className="bg-green-800 p-2 text-white">
       <div className="flex items-center justify-center gap-2">
-        <p>©Scott Mitchell</p>
+        <a href="https://www.scottsdev.net/" target="blank">
+          ©Scott Mitchell
+        </a>
         <div className="flex items-center gap-2">
           <ul className="flex gap-2 ">
             {social.map((link) => {
