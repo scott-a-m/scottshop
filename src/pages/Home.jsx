@@ -44,7 +44,7 @@ const Home = () => {
 
   return (
     <div className="mt-20">
-      <div className="grid sm:grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_1fr] items-center lg:items-start justify-center text-center">
+      <div className="grid sm:grid-cols-[auto_1fr_auto] md:mr-10 items-center lg:items-start justify-center text-center">
         <div className="hidden sm:block self-center px-3 md:px-8 xl:px-20">
           <div className="flex flex-col justify-center items-center ">
             <h1 className="font-heading text-3xl sm:text-6xl sm:py-4">
@@ -65,7 +65,7 @@ const Home = () => {
         </div>
 
         <div className="w-full flex justify-center mb-2 sm:mb-10">
-          <div className="shadow-lg relative h-[500px] w-[300px] xs:w-[400px] xs:h-[625px] sm:h-[500px] sm:w-[300px]  md:h-[630px] md:w-[400px] xxl:h-[720px] xl:w-[500px] overflow-hidden rounded-md">
+          <div className="shadow-lg relative h-[500px] w-[300px] xs:w-[400px] xs:h-[625px] sm:h-[500px] sm:w-[300px]  md:h-[630px] md:w-11/12 xxl:h-[720px] xxl:w-11/12 overflow-hidden rounded-md">
             {products.map((product, productIndex) => {
               let position = "translate-x-full";
               if (productIndex === index) {
